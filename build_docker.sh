@@ -39,5 +39,12 @@ sudo docker build --rm -t $CONTAINER_NAME --file $DOCKERFILE_LOC .
 
 # bugfix for mips files
 echo "Fixing MIPS bug"
-sudo echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn3
+
 sudo echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32el
+sudo echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32
+
+echo "If you don't have the right permissions to run those commands, you will likely get an error at the next step.."
+echo "Kill the container (docker container ls; docker kill <the container name>) and figure out how to run the echos above!"
+echo "Once you've successfully echoed -1 to the appropriate files, run test_docker.sh again!"
+
+./test_docker.sh

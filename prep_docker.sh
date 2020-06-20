@@ -27,10 +27,12 @@ echo "Running container in privileged mode because we need to modify the host."
 echo ""
 sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
-#git clone https://github.com/devttys0/binwalk.git
-#cd binwalk
-#sudo ./deps.sh
-#sudo python ./setup.py install
+git clone https://github.com/devttys0/binwalk.git
+cd binwalk
+sudo ./deps.sh
+sudo python ./setup.py install
+sudo python3 ./setup.py install
+
 
 cd $BASE_DIR
 
