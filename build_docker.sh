@@ -39,5 +39,5 @@ sudo docker build --rm -t $CONTAINER_NAME --file $DOCKERFILE_LOC .
 
 # bugfix for mips files
 echo "Fixing MIPS bug"
-echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn3
-echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32el
+sudo echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn3
+sudo echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32el

@@ -22,6 +22,11 @@ sudo apt-get install qemu binfmt-support qemu-user-static docker.io git zip unzi
 sudo apt-get install fakeroot python-psycopg2 python3-psycopg2 python-magic
 sudo pip3 install python-magic
 
+# populating binfmt_misc with entries for emulation
+echo "Running container in privileged mode because we need to modify the host."
+echo ""
+sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
 # git clone https://github.com/devttys0/binwalk.git
 # cd binwalk
 # sudo ./deps.sh
@@ -46,3 +51,4 @@ mv outputs/$FIRMWARE_NAME* outputs/$FIRMWARE_NAME.tar.gz
 echo " >>> Make sure any extra binaries you want copied over to your container are put into the addons folder before you run the next step."
 echo ""
 echo "When you are ready, run build_docker.sh!"
+echo ""
