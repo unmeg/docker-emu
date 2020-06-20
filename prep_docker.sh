@@ -20,19 +20,19 @@ echo ""
 sudo apt-get install qemu binfmt-support qemu-user-static docker.io git zip unzip
 # from firmadyne
 sudo apt-get install fakeroot python-psycopg2 python3-psycopg2 python-magic
-sudo pip3 install python-magic
+sudo pip3 install python-magic binwalk
 
 # populating binfmt_misc with entries for emulation
 echo "Running container in privileged mode because we need to modify the host."
 echo ""
 sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
-# git clone https://github.com/devttys0/binwalk.git
-# cd binwalk
-# sudo ./deps.sh
-# sudo python ./setup.py install
+#git clone https://github.com/devttys0/binwalk.git
+#cd binwalk
+#sudo ./deps.sh
+#sudo python ./setup.py install
 
-# cd $BASE_DIR
+cd $BASE_DIR
 
 echo "Grabbing firmware extractor!"
 echo ""
@@ -40,12 +40,13 @@ git clone https://github.com/firmadyne/extractor.git
 
 echo "Running extractor.."
 echo ""
-# sudo ./extractor/extract.sh $FIRMWARE_LOC $BASE_DIR/outputs/
 cd extractor
+#sudo ./extract.sh $FIRMWARE_LOC $BASE_DIR/outputs
 fakeroot python3 ./extractor.py -np $FIRMWARE_LOC $BASE_DIR/outputs
 
-echo "Doing a dirty hack that could break things if your output directory isn't empty"
 cd $BASE_DIR
+
+echo "Doing a dirty hack that could break things if your output directory isn't empty"
 mv outputs/$FIRMWARE_NAME* outputs/$FIRMWARE_NAME.tar.gz
 
 echo " >>> Make sure any extra binaries you want copied over to your container are put into the addons folder before you run the next step."
