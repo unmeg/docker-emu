@@ -40,7 +40,6 @@ sudo docker build --rm -t $CONTAINER_NAME --file $DOCKERFILE_LOC .
 # bugfix for mips files
 echo "Fixing MIPS bug"
 
-# this is why we have suid
 sudo bash -c "echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32el"
 sudo bash -c "echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32"
 
