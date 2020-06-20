@@ -8,7 +8,7 @@
 
 CONTAINER_NAME="test_mips"
 
-echo "Running container..\n"
+echo "Running container.."
 
 # sudo docker run -it $CONTAINER_NAME:latest /bin/sh
 sudo docker run --rm --cap-add SYS_PTRACE -p 80:80 -p 23:23 -p 7777:7777 -i -t $CONTAINER_NAME:latest /bin/sh
