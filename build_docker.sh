@@ -40,14 +40,9 @@ sudo docker build --rm -t $CONTAINER_NAME --file $DOCKERFILE_LOC .
 # bugfix for mips files
 echo "Fixing MIPS bug"
 
-# switch to root to fix these
-su -
-
-sudo echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32el
-sudo echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32
-
-# go back to user
-exit
+# this is why we have suid
+sudo bash -c "echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32el"
+sudo bash -c "echo -1 > /proc/sys/fs/binfmt_misc/qemu-mipsn32"
 
 echo "If you don't have the right permissions to run those commands, you will likely get an error at the next step.."
 echo "Kill the container (docker container ls; docker kill <the container name>) and figure out how to run the echos above!"

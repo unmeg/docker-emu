@@ -49,7 +49,7 @@ fakeroot python3 ./extractor.py -np $FIRMWARE_LOC $BASE_DIR/outputs
 cd $BASE_DIR
 
 echo "Doing a dirty hack that could break things if your output directory isn't empty"
-mv outputs/$FIRMWARE_NAME* outputs/$FIRMWARE_NAME.tar.gz
+mv outputs/$FIRMWARE_NAME*.tar.gz outputs/$FIRMWARE_NAME.tar.gz
 
 echo " >>> Make sure any extra binaries you want copied over to your container are put into the addons folder before you run the next step."
 echo ""
